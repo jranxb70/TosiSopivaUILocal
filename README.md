@@ -2,7 +2,7 @@
 
 ## This invoicing program was created as a final project for the Opiframe C/Python course.
 
-### This part is written in [Python](www.https://www.python.org/) using [Flet](https://flet.dev/) and [SQLite](https://www.sqlite.org/) and is designed to work with a local database.
+### This part is written in [Python](https://www.python.org/) using [Flet](https://flet.dev/) and [SQLite](https://www.sqlite.org/) and is designed to work with a local database.
 
 ### The full project can be seen here:
 
