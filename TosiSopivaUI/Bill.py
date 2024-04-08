@@ -5,6 +5,7 @@ from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.pagesizes import LETTER
 from reportlab.graphics.shapes import Line, Drawing
 from reportlab.lib.colors import Color
+from util.snack_bar import show_snack_bar
 
 import sqlite3
 conn = sqlite3.connect('invoice.db',check_same_thread=False)
@@ -25,11 +26,8 @@ def get_customer():
     conn.commit()
     
 def generate_bill(e):
-    page = e.page
-    page.snack_bar = ft.SnackBar(ft.Text('Successful download!'))
-    page.snack_bar.open = True
     generate_bill_pdf(f"{global_bill[3]}__{global_bill[4]}.pdf")
-    page.update()
+    show_snack_bar(e.page, 'Successful download!')
     
 def generate_bill_pdf(filename):
     PDFPSReporte(filename)

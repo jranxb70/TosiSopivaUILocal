@@ -3,6 +3,7 @@ import sqlite3
 from Bill import get_invoice
 from views.page_invoice_line import get_id
 from db_invoice_line import db_get_id
+from util.snack_bar import show_snack_bar
 
 conn = sqlite3.connect('invoice.db',check_same_thread=False)
 
@@ -46,7 +47,7 @@ def showdelete(e):
 		tb.rows.clear()	
 		calldb()
 		tb.update()
-
+		show_snack_bar(e.page, 'Deleted!')
 	except Exception as e:
 		print(e)
 
@@ -75,6 +76,7 @@ def updateandsave(e):
 		dlg.visible = False
 		dlg.update()
 		tb.update()
+		show_snack_bar(e.page, 'Updated!')
 	except Exception as e:
 		print(e)
 
