@@ -4,6 +4,7 @@ from validate_email import validate_email
 import sqlite3
 from flet import * 
 from views.app_bar import AppBar
+from util.snack_bar import show_snack_bar
 
 def page_reg(page: ft.Page, params: Params, basket: Basket):
 
@@ -21,14 +22,11 @@ def page_reg(page: ft.Page, params: Params, basket: Basket):
         db.commit()
         db.close()
         if validate_email(user_email.value) == True:
-          page.snack_bar = ft.SnackBar(ft.Text('Registered!'))
-          page.snack_bar.open = True
+          show_snack_bar(e.page, 'Registered!')
           page.go('/page_auth')
         else:
-          page.snack_bar = ft.SnackBar(ft.Text('Wrong email format!'))
-          page.snack_bar.open = True
-          page.update()      
-
+          show_snack_bar(e.page, 'Wrong email format!')
+          
     def validate(e):
         if all([user_login.value, user_pass.value, user_email.value]):
             btn_reg.disabled = False

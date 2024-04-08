@@ -3,6 +3,7 @@ from flet_route import Params, Basket
 import sqlite3
 from flet import *
 from views.app_bar import AppBar
+from util.snack_bar import show_snack_bar
 
 def page_auth(page: ft.Page, params: Params, basket: Basket):
   
@@ -12,13 +13,10 @@ def page_auth(page: ft.Page, params: Params, basket: Basket):
         cur.execute(f"SELECT * FROM users WHERE login = '{user_login.value}' AND pass = '{user_pass.value}'")
         
         if cur.fetchone() != None:
-            page.snack_bar = ft.SnackBar(ft.Text('Successful login!'))
-            page.snack_bar.open = True
+            show_snack_bar(e.page, 'Successful login!')
             page.go('/page_cabinet')
         else:
-            page.snack_bar = ft.SnackBar(ft.Text('Wrong login or password!'))
-            page.snack_bar.open = True
-            page.update()
+            show_snack_bar(e.page, 'Wrong login or password!')
         db.commit()
         db.close()
 

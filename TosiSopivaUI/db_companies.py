@@ -1,4 +1,6 @@
 from flet import *
+
+from util.snack_bar import show_snack_bar
 import sqlite3
 conn = sqlite3.connect('invoice.db',check_same_thread=False)
 
@@ -24,6 +26,7 @@ def showdelete(e):
 		tb.rows.clear()	
 		calldb()
 		tb.update()
+		show_snack_bar(e.page, "Deleted!")
 
 	except Exception as e:
 		print(e)
@@ -63,6 +66,7 @@ def updateandsave(e):
 		dlg.visible = False
 		dlg.update()
 		tb.update()
+		show_snack_bar(e.page, "Updated!")
 	except Exception as e:
 		print(e)
 
